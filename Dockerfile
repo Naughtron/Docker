@@ -1,15 +1,10 @@
 # create docker contianer for default python env
 FROM ubuntu:14.04
 MAINTAINER Christopher Naughton 
-RUN sudo apt-get update && apt-get install -y python
-RUN sudo apt-get install -y python-pip
-RUN pip install selenium
-RUN pip install nose
-RUN pip install fake-factory
-RUN pip install PyVirtualDisplay
-RUN pip install xvfbwrapper
-RUN sudo apt-get install -y git
-RUN git init
-RUN git clone https://github.com/Naughtron/pi_python_project.git
-RUN cd pi_python_project/unit_tests/
-RUN python nosetests
+RUN sudo apt-get update && apt-get install -y python python-pip git
+
+RUN pip install selenium nose fake-factory PyVirtualDisplay xvfbwrapper
+ADD /location of git sources on local machine  /location in docker image
+#RUN git clone https://github.com/Naughtron/pi_python_project.git
+WORKDIR pi_python_project/unit_tests/
+CMD python nosetests
